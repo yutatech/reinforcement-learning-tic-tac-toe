@@ -1,4 +1,5 @@
 import pickle
+import struct
 import copy
 
 class Agent:
@@ -12,6 +13,11 @@ class Agent:
   def Save(self, file_name = 'q_table'):
     with open(file_name, 'wb') as file:
       pickle.dump(self.q_afterstate, file)
+      
+  def SaveForGo(self, file_name = 'q_table_go'):
+    with open(file_name, 'wb') as file:
+      # structを使って、配列全体をバイナリにパックして書き込む
+      file.write(struct.pack('f' * len(self.q_afterstate), *(self.q_afterstate)))
       
   def Load(self, file_name = 'q_table'):
     with open(file_name, 'rb') as file:

@@ -15,6 +15,7 @@ if __name__ == '__main__':
     coordinate = [int(coordinate[0]), int(coordinate[1])]
     env.UpdateState(cell = coordinate)
     env.PrintState()
+    print(agent.State2Index(env.GetState()))
     if env.Judge() != None:
       if env.Judge() == '_':
         print('draw')
